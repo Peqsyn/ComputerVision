@@ -2,7 +2,7 @@
 import cv2
 import numpy as np
 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(1)
 
 while(1):
     # take each frame
@@ -32,8 +32,8 @@ while(1):
     cv2.imshow('res', res)
     i = cv2.waitKey(5) & 0xFF
 
-    # the key refers to ASCII Value 32: space key
-    if i == 32:
+    # the key refers to ASCII Value 27: esc key
+    if i == 27:
         break
 
 cv2.destroyAllWindows()
