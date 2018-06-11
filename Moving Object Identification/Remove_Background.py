@@ -29,37 +29,51 @@ class Image_Layers:
                     break
 
         if(foreground_path == None):
-            foreground_path == background_path
+            foreground_path = background_path
 
         if(background_path == None):
-            background_path == foreground_path
+            background_path = foreground_path
 
         # Create image object for background (16-bit color depth)
-        background = cv2.imread(background_path, cv2.IMREAD_ANYDEPTH)
+        background = cv2.imread(background_path, cv2.IMREAD_ANYDEPTH | cv2.IMREAD_COLOR)
         # Create image object for foreground (16-bit color depth)
-        foreground = cv2.imread(foreground_path, cv2.IMREAD_ANYDEPTH)
+        foreground = cv2.imread(foreground_path, cv2.IMREAD_ANYDEPTH | cv2.IMREAD_COLOR)
 
-        #*** Seperate the two layers ***#
+        self.layers = [background]
+        if(foreground_path != background_path):
+            self.add_layer(foreground)
 
-        self.layers = [background, foreground] 
 
-    def add_layer(self, foreground_path):
-        foreground = cv2.imread(foreground_path, cv2.IMREAD_ANYDEPTH)
+
+    # combine all previous layers and compare that image to the new image.
+    #   The added layer will include anything that has changed in the foreground.
+    def add_layer(self, foreground_path, tolerance = 2**10):
+        foreground = cv2.imread(foreground_path, cv2.IMREAD_ANYDEPTH | cv2.IMREAD_COLOR)
+        self.layers.append(numpy.multiply(numpy.greater(numpy.abs(numpy.subtract(foreground.astype('int32'), self.layers[0].astype('int32'))), tolerance), foreground))
+        print(self.layers[1])
+
 
         
 
 
+if __name__ == "main":
+    # First path
+    image_path = os.getcwd()
+    folder = '/TIFF_Images/'
+    image_name = 'DSC_0041'
+    image_format = '.TIF'
+    background_path = image_path + folder + image_name + image_format
 
-    
-image_path = os.getcwd()
-folder = '/TIFF_Images/'
-image_name = 'DSC_0041'
-image_format = '.TIF'
-background_path = image_path + folder + image_name + image_format
+    layers = Image_Layers(background_path)
 
-layers = Image_Layers(background_path)
+    # Second path
+    image_name = 'DSC_0043'
+    foreground_path = image_path + folder + image_name + image_format
+    layers.add_layer(foreground_path)
 
-cv2.imshow('image', layers.layers[0])
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+    output_image = cv2.resize(layers.layers[1], (1920, 1000))
+
+    cv2.imshow('image', output_image)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
 
