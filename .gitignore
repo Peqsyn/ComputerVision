@@ -1,3 +1,2 @@
-/dataset_fruits360/dataset*
-/dataset_fruits360/examples*
-/dataset_Google/images*
+/images
+/__pycache__
