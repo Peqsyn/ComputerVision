@@ -5,6 +5,8 @@
 
 3. __Please read__ [the Coding Style document](codingStyle.md) before commiting any code to the repo.
 
-4. Some useful resources 
+4. To configure your Ubuntu environment for deep learning with Python refer to [this](linuxConfig.md) document
+
+5. Some useful resources 
     * Computer vison and neural network tutorials by [Adrian Rosebrock](https://www.pyimagesearch.com/author/adrian/)
     * installing tensorflow for [python3.5](https://www.deciphertechnic.com/install-tensorflow-on-raspberry-pi/)
