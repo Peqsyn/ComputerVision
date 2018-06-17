@@ -47,7 +47,7 @@ Link [4](https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.
 
 
 Resources:
-[1] PEP 8 Python Style Guide: https://www.python.org/dev/peps/pep-0008/
-[2] PEP 257 Docstring Convention: https://www.python.org/dev/peps/pep-0257/
-[3] Napoleon format: https://pypi.org/project/sphinxcontrib-napoleon/
-[4] Google Style Python Docstring: https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html
+1. [PEP 8 Python Style Guide](https://www.python.org/dev/peps/pep-0008/)
+2. [PEP 257 Docstring Convention](https://www.python.org/dev/peps/pep-0257/)
+3. [Napoleon format](https://pypi.org/project/sphinxcontrib-napoleon/)
+4. [Google Style Python Docstring](https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html)
