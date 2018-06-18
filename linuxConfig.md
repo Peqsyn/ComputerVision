@@ -16,7 +16,7 @@
 		$ python
 		>>> import cv2
 		>>>cv2.__version__
-		the version should say '3.4.1'
+		'3.4.1'
 		```
 6. Install Keras
 	1. Run the following [keras.sh](keras.sh) with the following command chmod +x /path/to/keras.sh
