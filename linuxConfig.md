@@ -11,6 +11,17 @@
 5. Compile and install OpenCV
 	1. Run the following [opencv.sh](opencv.sh) with the following command chmod +x /path/to/opencv.sh
 	2. After running the command you can run the shell script using ./opencv.sh
+	3. Verify the OpenCV install type the following in terminal
+		$ python
+		>>> import cv2
+		>>> cv2.__version__
+		* the version should say '3.4.1'
 6. Install Keras
 	1. Run the following [keras.sh](keras.sh) with the following command chmod +x /path/to/keras.sh
 	2. After running the command you can run the shell script using ./keras.sh
+	3. Verify the Keras install type the following in terminal
+		$ python
+		>>> import keras
+		Using TensorFlow backend.
+		>>>
+7. Finshed, if you have any issues with the install then follow [these](https://www.pyimagesearch.com/2017/09/25/configuring-ubuntu-for-deep-learning-with-python/) instructions.
