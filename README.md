@@ -5,7 +5,9 @@
 
 3. __Please read__ [the Coding Style document](codingStyle.md) before commiting any code to the repo.
 
-4. To configure your Ubuntu environment for deep learning with Python refer to [this](linuxConfig.md) document
+4. To configure your Ubuntu environment for deep learning with Python
+   * refer to [this](linuxConfig.md) document if you don't have a 10 series GPU or better, (CPU version of TensorFlow)
+   * refer to [this] doucment if you have a 10 series GPU or better, (GPU version of TensorFlow + CUDA)
 
 5. Some useful resources 
     * Computer vison and neural network tutorials by [Adrian Rosebrock](https://www.pyimagesearch.com/author/adrian/)
