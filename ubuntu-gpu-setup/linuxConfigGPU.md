@@ -1,5 +1,5 @@
 # Configuring Ubuntu for deep learning with Python (GPU version of TensorFlow)
-<!-- 1. Click [here](http://releases.ubuntu.com/16.04/ubuntu-16.04.4-desktop-amd64.iso) to install the .iso for Ubuntu 16.04
+1. Click [here](http://releases.ubuntu.com/16.04/ubuntu-16.04.4-desktop-amd64.iso) to install the .iso for Ubuntu 16.04
 2. Install Ubuntu 16.04 via virtual machine, or onto a local hard drive
 3. Turn off X server / X window system two methods, picked one
 	1. First method (easier method)
@@ -14,6 +14,7 @@
 		3. Login with your username and password
 		4. Stop X server by executing sudo service lightdm stop
 		5. Perform the install instructions
+		* to restart GUI use sudo service lightdm start
 4. Install Ubuntu system dependencies
 	1. Open up terminal
 	2. Run the following [setup.sh](setup.sh) with the following command chmod +x /path/to/setup.sh
@@ -26,5 +27,5 @@
 			2. blacklist lbm-nouveau
 			3. options nouveau modeset=0
 			4. alias nouveau off
-			5. alias lbm-nouveau off -->
+			5. alias lbm-nouveau off
 1. The GPU instructions install are not as straight forward as the CPU version, use [this](https://www.pyimagesearch.com/2017/09/27/setting-up-ubuntu-16-04-cuda-gpu-for-deep-learning-with-python/) link for the instructions.
