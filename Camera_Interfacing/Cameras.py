@@ -40,7 +40,32 @@ class CameraAccess:
                 potential camera
 
         """
-        return []
 
+        
+        return ['default']
+
+
+    def select_camera(self, camera_name = 'default'):
+        """Choose which camera will be used
+
+        detect_cameras will tell the user what cameras are connected.
+        One of the listed cameras can then be selected by the user for
+        use.  Once selected, the capture, record (if allowed), and other
+        camera features will become usable.
+
+        Args:
+            camera_name (string): this is a camera name given by
+                detect_cameras.
+
+        Returns:
+            None
+
+        """
+
+        
+
+
+    
+if __name__ == 'main':
 
     
