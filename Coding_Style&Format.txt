@@ -37,7 +37,6 @@ descretion.
 
 
 
-
 CODING FORMAT
 
 We will be using the Napoleon extension to Sphinx for it's Google style docstrings. Sphinx is an extremely useful
