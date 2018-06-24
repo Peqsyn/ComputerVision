@@ -25,6 +25,25 @@ class CameraAccess:
     
     """
 
+    def __init__(self):
+        """Initialize all object variables
+
+        Args:
+            None
+
+        Returns:
+            None
+
+        """
+
+        # cameras is a dictionary which will contain the name of the
+        #   each camera as well as the access method and, in the case of
+        #   opencv, will provide the camera number.
+        #
+        # Opencv will have the following dictionary layout:
+        #       'cv2': ['camera_name_1': port, 'camera_name_2': port, ...] 
+        self.cameras = []
+
     def detect_cameras(self):
         """Provides a list of potential cameras.
         
@@ -41,6 +60,12 @@ class CameraAccess:
 
         """
 
+        # Initialize opencv cameras
+        try:
+            camera_num = 0
+            while(True):
+                
+        self.cameras
         
         return ['default']
 
@@ -62,10 +87,16 @@ class CameraAccess:
 
         """
 
+    def _find_opencv_cameras(self):
+        """Find all of the default cameras
+
+        Th
         
 
 
     
 if __name__ == 'main':
 
-    
+    camera_1 = CameraAccess()
+    camera_1.detect_cameras()
+    camera_1.select_camera()
