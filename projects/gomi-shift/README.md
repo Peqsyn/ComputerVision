@@ -1,9 +1,10 @@
 # Current Items to scrape images for
 1. Milk
 2. Yogurt
-3. Butter
+3. Celery
 4. Lettuce
 5. Lemons
+6. Tomatoes
 
 The bing search api has expired
 
