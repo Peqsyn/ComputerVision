@@ -1,3 +1,3 @@
 /images
 /__pycache__
-/projects/fruits_360/fruits.model
+*.model

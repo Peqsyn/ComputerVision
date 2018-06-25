@@ -9,7 +9,7 @@ IMAGE_HEIGHT = 32
 IMAGE_WIDTH = 32
 IMAGE_CHANNELS = 3
 
-data_path = 'C:/users/T-Rez/Downloads/fruits-360//'
+data_path = '/home/ericly/Documents/ComputerVision/images/fruits-360/'
 
 def createTFRecordsFile(src_dir,tfrecords_name):
     dir = src_dir
