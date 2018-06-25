@@ -1,0 +1,61 @@
+CODING STYLE
+
+We will be following the PEP-8 standard for our python formating, a link to the style guide can be found at the end
+of this document. The following is a brief list of notable conventions outlined in PEP-8:
+	
+	- An indent must be 4 characters. (not a tab)
+	- The maximum length of a line is 72 characters.
+	- Multiline opperations should use () or [] when possible and / only when necessary.
+	- Imports will be in the following order
+		1) standard library imports
+		2) third party imports
+		3) local imports
+	- We will use single quotes to define strings and chars unless double quotes are required for the use of 
+	  	single quotes.
+	- No space around default value assignment.
+		i.e. -> def function(x, y=value)
+	- reduce white space according to order of opperation.
+		i.e. -> (a+b) * (c+d)
+	- Two spaces after a sentence ending comment before the next sentence.
+	- Capitalazie first letter of a comment unless absolutely necessary.
+	- Class names should use 'CapWord' format. 
+		-> always use 'cls' for the first argument to class methods.
+	- Modules should have short lowercase names.
+	- Exceptions are classes and named as such.
+	- Functions should be lowercase with underscores seperating words.
+		-> always use 'self' for the first argument to instance methods.
+	- Variables follow the same convention as functions
+	- Constants are all caps with underscores seperating words.
+	- Non-public functions are marked by an underscore prefix
+		i.e. -> def _private_function(...):
+	- Attributes of a class should be non-public by default.
+	- Use def instead of lambda
+
+This list is not exhaustive but should give a relatively good outline of what is expected in terms of coding style.
+If something cannot be found here it will very likely be on the python PEP-8 website. If not use your own
+descretion.
+
+
+
+
+CODING FORMAT
+
+We will be using the Napoleon extension to Sphinx for it's Google style docstrings. Sphinx is an extremely useful
+tool for creating code documentation from the docstrings written for functions. Napoleon takes it one step further
+by making those docstrings readable. Of the two potential Napoleon formats, we will be using Google rather than
+NumPy.
+
+Link [3] give a list of all headers supported by Napoleon
+
+Link [4] Provides plenty of example docstrings.
+
+
+
+ 
+
+
+Resources:
+[1] PEP 8 Python Style Guide: https://www.python.org/dev/peps/pep-0008/
+[2] PEP 257 Docstring Convention: https://www.python.org/dev/peps/pep-0257/
+[3] Napoleon format: https://pypi.org/project/sphinxcontrib-napoleon/
+[4] Google Style Python Docstring: https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html
