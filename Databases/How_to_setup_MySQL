@@ -1,8 +1,16 @@
 In order to install MySQL server follow this tutorial:
 https://dev.mysql.com/doc/mysql-yum-repo-quick-guide/en/
 
-To open the MySQL shell type:
-mysql -u root -p
+To open the MySQL shell on the current machine:
+$ mysql -u root -p
+> show databases;
+> use 'enter name of database';
+> show tables;
 
 Here is a tutorial for MySQL:
 https://dev.mysql.com/doc/refman/8.0/en/tutorial.html
+
+To install the python mysql connector library type:
+$ sudo pip install mysql-connector-python
+
+Scripts have to be run through terminal in order to use the python MySQL library

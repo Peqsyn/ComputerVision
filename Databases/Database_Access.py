@@ -30,7 +30,7 @@ class DatabaseAccess:
         self.cnx = mysql.connector.connect( host = host,
                                             user = username,
                                             password = password )
-        self.cursor = self.cnx.cursor()
+        self.cursor = self.cnx.cursor(buffered = True)
 
         
 
@@ -140,6 +140,9 @@ class DatabaseAccess:
             '  PRIMARY KEY (`name`)'
             ') ENGINE=InnoDB')
 
+
+        # Note: Isbn is a 12 digit number and cannot be contained in the
+        # standard variable types.
         tables['item'] = (
             '  CREATE TABLE `item` ('
             '  `name` varchar(64) NOT NULL,'
@@ -147,7 +150,7 @@ class DatabaseAccess:
             '  `certainty` int(255) NOT NULL,'
             '  `price_paid` int(255) NOT NULL,'
             '  `location_of_purchase` varchar(64) NOT NULL,'
-            '  `ISBN` int(16) NOT NULL,'
+            '  `ISBN` int(255) NOT NULL,'
             '  `location` varchar(255) NOT NULL,'
             '  PRIMARY KEY (`name`)'
             ') ENGINE=InnoDB')
@@ -157,6 +160,31 @@ class DatabaseAccess:
 
 
     def initialize_tables(self, tables):
+        ''' Create a collection of tables from a dictionary
+
+        There is a standard form for creating a dictionary that will be
+        converted to tables.
+
+        tables = {}
+        
+        tables['name of entity'] = (
+            '  CREATE TABLE `name of entity` ('
+            '  `parameter1` datatype(bit depth etc.) NOT NULL,'
+            '  `parameter2` datatype(bit depth etc.) NOT NULL,'
+            '   .                                    '
+            '   .                                    '
+            '   .                                    '
+            '  PRIMARY KEY (`parameter#`)'
+            ') ENGINE=InnoDB')
+
+        Args:
+            tables (dict): dictionary defined as described in this
+                heading.
+
+        Returns:
+            None
+
+        '''
         
         for name, ddl in tables.items():
             try:
@@ -169,6 +197,53 @@ class DatabaseAccess:
                     print(err.msg)
             else:
                 print('OK')
+
+
+
+    def add_entry(self, table, *args):
+        ''' Add data to the current database
+
+        Add all necessary values to the requested table.
+
+        Args:
+            table (str): The name of the table in which the values are
+                to be input.
+
+            *args (n-values): Values to go into each column of the
+                table.
+
+        Returns:
+            None
+
+        '''
+
+        # Move cursor to the requested table
+        self.cursor.execute('SHOW columns FROM ' + table)
+
+        # Get column names
+        column_names = [column[0] for column in self.cursor.fetchall()]
+
+        # Compose command to add data
+        add_data = 'INSERT INTO ' + table + ' ('
+        for column in column_names:
+            add_data += column + ', '
+
+        # Remove the extra ', '
+        add_data = add_data[:-2]
+
+        add_data += (') VALUES ('
+                    + ('%s, '
+                    * len(column_names)))
+
+        # remove the extra ', '
+        add_data = add_data[:-2]
+
+        add_data += ')'
+
+        # commit data to database
+        self.cursor.execute(add_data, args)
+        self.cnx.commit()
+        
     
 
     def close_connection(self):
@@ -213,6 +288,8 @@ if __name__ == '__main__':
 
     database.initialize_tables(
         database.gomi_tables())
+
+    database.add_entry('item', 'bean', 239, 100, 30, 'starbucks', 200289, 'fridge')
 
     database.close_connection()
 
