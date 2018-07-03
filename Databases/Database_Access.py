@@ -4,8 +4,8 @@ from mysql.connector import errorcode
 class DatabaseAccess:
     ''' Provides tools for accessing databases
 
-    Will create database and then allow adding, removing, and searching
-    of database contents.
+    Allows user to create database and then add, remove, and search
+    items in database contents.
 
     '''
 
@@ -243,7 +243,201 @@ class DatabaseAccess:
         # commit data to database
         self.cursor.execute(add_data, args)
         self.cnx.commit()
+
+
+
+    ####################################################################
+    #                                                                  #
+    #                      Database Query Commands                     #
+    #                                                                  #
+    ####################################################################
+
+    def number_less_than(self, table, column_name, number):
+        ''' Find entries with a value less than the specified number
+
+        The specified table's column will be searched for a value that
+        is less than the one specified.  The matching entries will then
+        be provided to the user as a list of dictionaries containing
+        parameters which can be searched by name.
+
+        Args:
+            table (str): table to be searched
+            column_name (str): name of the column to be searched
+            number (int): number to be compared against
+
+        Returns:
+            List of dictionaries.  Each dictionary can be referenced by
+            the name specified in the definition of the database.
+
+        '''
         
+        query = ('SELECT * FROM '
+                 + table
+                 + ' WHERE '
+                 + column_name
+                 + ' < %s') %(number)
+
+
+        # Move cursor to the requested table
+        self.cursor.execute('SHOW columns FROM ' + table)
+
+        # Get column names
+        column_names = [column[0] for column in self.cursor.fetchall()]
+
+        
+        self.cursor.execute(query)
+
+        values = []
+        for column in self.cursor.fetchall():
+            values.append({})
+            for i in range(len(column_names)):
+                values[len(values)-1].update(
+                    {column_names[i]:column[i]})
+
+        return values
+        
+
+        
+    def number_greater_than(self, table, column_name, number):
+        ''' Find entries with a value less than the specified number
+
+        The specified table's column will be searched for a value that
+        is greater than the one specified.  The matching entries will
+        then be provided to the user as a list of dictionaries
+        containing parameters which can be searched by name.
+
+        Args:
+            table (str): table to be searched
+            column_name (str): name of the column to be searched
+            number (int): number to be compared against
+
+        Returns:
+            List of dictionaries.  Each dictionary can be referenced by
+            the name specified in the definition of the database.
+
+        '''
+        
+        query = ('SELECT * FROM '
+                 + table
+                 + ' WHERE '
+                 + column_name
+                 + ' > %s') %(number)
+
+
+        # Move cursor to the requested table
+        self.cursor.execute('SHOW columns FROM ' + table)
+
+        # Get column names
+        column_names = [column[0] for column in self.cursor.fetchall()]
+
+        
+        self.cursor.execute(query)
+
+        values = []
+        for column in self.cursor.fetchall():
+            values.append({})
+            for i in range(len(column_names)):
+                values[len(values)-1].update(
+                    {column_names[i]:column[i]})
+
+        return values
+
+
+    
+    def number_between(self, table, column_name, number_1, number_2):
+        ''' Find entries with a value less than the specified number
+
+        The specified table's column will be searched for a value that
+        is between the two specified.  The matching entries will then
+        be provided to the user as a list of dictionaries containing
+        parameters which can be searched by name.
+
+        Args:
+            table (str): table to be searched
+            column_name (str): name of the column to be searched
+            number_1 (int): number specifying first boundary
+            number_2 (int): number specifying second boundary
+
+        Returns:
+            List of dictionaries.  Each dictionary can be referenced by
+            the name specified in the definition of the database.
+
+        '''
+
+        query = ('SELECT * FROM '
+                 + table
+                 + ' WHERE '
+                 + column_name
+                 + ' BETWEEN %s AND %s') %(number_1, number_2)
+
+
+        # Move cursor to the requested table
+        self.cursor.execute('SHOW columns FROM ' + table)
+
+        # Get column names
+        column_names = [column[0] for column in self.cursor.fetchall()]
+
+        
+        self.cursor.execute(query)
+
+        values = []
+        for column in self.cursor.fetchall():
+            values.append({})
+            for i in range(len(column_names)):
+                values[len(values)-1].update(
+                    {column_names[i]:column[i]})
+
+        return values
+
+
+    
+    def equal_to(self, table, column_name, value):
+        ''' Find entries with a value less than the specified number
+
+        The specified table's column will be searched for a value that
+        is the same as the one specified.  The matching entries will 
+        then be provided to the user as a list of dictionaries
+        containing parameters which can be searched by name.
+
+        Args:
+            table (str): table to be searched
+            column_name (str): name of the column to be searched
+            value (*): value to be compared against
+
+        Returns:
+            List of dictionaries.  Each dictionary can be referenced by
+            the name specified in the definition of the database.
+
+        '''
+
+        query = ('SELECT * FROM '
+                 + table
+                 + ' WHERE '
+                 + column_name
+                 + ' LIKE %s%s%s') %('\'', value, '\'')
+
+        # Move cursor to the requested table
+        self.cursor.execute('SHOW columns FROM ' + table)
+
+        # Get column names
+        column_names = [column[0] for column in self.cursor.fetchall()]
+
+        
+        self.cursor.execute(query)
+
+        values = []
+        for column in self.cursor.fetchall():
+            values.append({})
+            for i in range(len(column_names)):
+                values[len(values)-1].update(
+                    {column_names[i]:column[i]})
+
+        return values
+
+
+
+    ####################################################################
+
     
 
     def close_connection(self):
@@ -289,7 +483,11 @@ if __name__ == '__main__':
     database.initialize_tables(
         database.gomi_tables())
 
-    database.add_entry('item', 'bean', 239, 100, 30, 'starbucks', 200289, 'fridge')
+    #database.add_entry('item', 'bean3', 311, 100, 30
+    #                    , 'starbucks', 200289, 'fridge')
+
+    print([data['name'] for data in database.number_between(
+        'item', 'weight', 200, 310)])
 
     database.close_connection()
 
