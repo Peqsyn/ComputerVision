@@ -1,13 +1,13 @@
 # Current Items to scrape images for
-1. Milk Carton (2 L) - in the back
-2. Yogurt (tub) - in the back
-3. Peanut Butter Tub - in the back
-4. Juice (1L or 2L) - in the back
-5. Lemon (1) - in the front 
-6. Tomatoes (2) - in the front
-7. Salad Dressing - on the side
-8. Apple (Red) - in the front
-9. TBA
+1. Milk Carton (2 L) - in the back (Eric)
+2. Yogurt (tub) - in the back (Eric)
+3. Peanut Butter Tub - in the back (Eric)
+4. Juice (1L or 2L) - in the back (Theresa)
+5. Lemon (1) - in the front (Theresa)
+6. Tomatoes (2) - in the front (Theresa)
+7. Salad Dressing - on the side (Peter)
+8. Apple (Red) - in the front (Peter)
+9. Banana - in the front (Peter)
 10. TBA
 The bing search api has expired
 
